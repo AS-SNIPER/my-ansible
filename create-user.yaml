@@ -1,6 +1,8 @@
 ---
 
 - hosts: all
+  vars_files:
+    - vars/mysecret.yaml
   tasks:
   - name: Create User {{ user }} 
     ansible.builtin.user:

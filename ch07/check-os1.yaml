@@ -1,0 +1,9 @@
+---
+
+- hosts: all
+
+  tasks:
+    - name: Print os type
+      ansible.builtin.debug:
+        msg: ""
+      when: ansible_facts['distribution'] in supported_distros
