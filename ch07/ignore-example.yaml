@@ -1,0 +1,16 @@
+---
+
+  - hosts: tnode1-centos.exp.com
+
+    tasks:
+      - name: Install apache
+        ansible.builtin.dnf:
+          name: httpd
+          state: latest
+        ignore_errors: yes
+
+      - name: Print msg
+        ansible.builtin.debug:
+          msg: "Before task is ignored"
+
+
