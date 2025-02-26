@@ -1,0 +1,15 @@
+---
+
+- hosts: all
+  vars:
+    user_info:
+      - ansible
+      - stack
+ 
+  tasks:
+  - name: Remove user
+    ansible.builtin.user:
+      name: "{{ item }}"
+      state: absent
+    loop: "{{ user_info }}"
+  

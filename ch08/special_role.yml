@@ -1,0 +1,31 @@
+---
+
+- hosts: tnode1-centos.exp.com
+
+  pre_tasks:
+    - name: Print start role
+      ansible.builtin.debug:
+        msg: "Let's start role play"
+
+  roles:
+    - my-role
+    - my-role2
+
+  tasks:
+    - name: Curl test
+      ansible.builtin.uri:
+        url: http://192.168.100.5
+        return_content: true
+      register: curl_result
+      notify: print result
+      changed_when: true
+
+  post_tasks:
+    - name: print finish role play
+      ansible.builtin.debug:
+        msg: "finish role play"
+
+  handlers:
+    - name: print result
+      ansible.builtin.debug:
+        msg: "{{ curl_result.content }}"
